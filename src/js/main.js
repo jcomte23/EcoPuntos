@@ -56,6 +56,8 @@ function agregarDatos(piso, cantidad, tipoCaneca) {
     data.forEach(element => {
         if (element.piso === piso && cantidad <= 500) {
             element[tipoCaneca] += cantidad
+            document.getElementById("btnCloseModal").click()
+            document.getElementById("cantidad").value=""
         }
     })
     pintarPuntoEcologico(piso)
