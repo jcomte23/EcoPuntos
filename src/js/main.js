@@ -54,10 +54,13 @@ canecas.forEach(element => {
 
 function agregarDatos(piso, cantidad, tipoCaneca) {
     data.forEach(element => {
-        if (element.piso === piso && (cantidad>0 || cantidad <= 500)) {
-            element[tipoCaneca] += cantidad
-            document.getElementById("btnCloseModal").click()
-            document.getElementById("cantidad").value=""
+        if (element.piso === piso) {
+            if ((element[tipoCaneca] + cantidad) <= 500) {
+                element[tipoCaneca] += cantidad
+                document.getElementById("btnCloseModal").click()
+                document.getElementById("cantidad").value = ""
+            }
+
         }
     })
     pintarPuntoEcologico(piso)
@@ -69,14 +72,14 @@ function pintarPuntoEcologico(piso) {
             document.querySelector("#aprovechables .body_top span").textContent = `${element.aprovechables}/500`
             document.querySelector("#organicos .body_top span").textContent = `${element.organicos}/500`
             document.querySelector("#no_aprovechables .body_top span").textContent = `${element.no_aprovechables}/500`
-            let total=(element.aprovechables+element.organicos+element.no_aprovechables)
-            let porcentaje=((total*100)/1500)
-            if (porcentaje<25) {
-                document.body.style.background="red"
-            }else if (porcentaje>=25 && porcentaje<50) {
-                document.body.style.background="orange"
-            }else{
-                document.body.style.background="green"
+            let total = (element.aprovechables + element.organicos + element.no_aprovechables)
+            let porcentaje = ((total * 100) / 1500)
+            if (porcentaje < 25) {
+                document.body.style.background = "red"
+            } else if (porcentaje >= 25 && porcentaje < 50) {
+                document.body.style.background = "orange"
+            } else {
+                document.body.style.background = "green"
             }
         }
     });
